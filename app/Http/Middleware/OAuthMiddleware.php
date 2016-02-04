@@ -43,7 +43,7 @@ class OAuthMiddleware
     {
         $route = $this->router->getCurrentRoute();
 
-        if (! $this->auth->check(false)) {
+        if (!$this->auth->check(false)) {
             $this->auth->authenticate($route->getAuthProviders());
         }
 

@@ -21,8 +21,7 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define your route model bindings, pattern filters, etc.
      *
-     * @param  \Illuminate\Routing\Router  $router
-     * @return void
+     * @param \Illuminate\Routing\Router $router
      */
     public function boot(Router $router)
     {
@@ -34,8 +33,7 @@ class RouteServiceProvider extends ServiceProvider
     /**
      * Define the routes for the application.
      *
-     * @param  \Illuminate\Routing\Router  $router
-     * @return void
+     * @param \Illuminate\Routing\Router $router
      */
     public function map(Router $router)
     {
@@ -53,8 +51,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         $api_router = app('Dingo\Api\Routing\Router');
         $api_router->group([
-            'version'   => env('API_PREFIX'),
-            'namespace' => $this->api_controller_namespace,
+            'version' => env('API_PREFIX'),
+            'namespace' => $this->api_namespace,
         ], function ($router) {
             require app_path('Http/api_routes.php');
         });

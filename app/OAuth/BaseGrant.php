@@ -60,9 +60,10 @@ abstract class BaseGrant extends AbstractGrant
      */
     protected function getVerifyCredentialsCallback()
     {
-        if (is_null($this->callback) || ! is_callable($this->callback)) {
+        if (is_null($this->callback) || !is_callable($this->callback)) {
             throw new ServerErrorException('Null or non-callable callback set on Password grant');
         }
+
         return $this->callback;
     }
     /**
@@ -104,6 +105,7 @@ abstract class BaseGrant extends AbstractGrant
             $refreshToken->setAccessToken($accessToken);
             $refreshToken->save();
         }
+
         return $this->server->getTokenType()->generateResponse();
     }
     /**
@@ -121,7 +123,7 @@ abstract class BaseGrant extends AbstractGrant
         if (is_null($clientId)) {
             throw new InvalidRequestException('client_id');
         }
-        $clientSecret = $this->server->getRequest()->request->get('client_secret',$this->server->getRequest()->getPassword());
+        $clientSecret = $this->server->getRequest()->request->get('client_secret', $this->server->getRequest()->getPassword());
         if (is_null($clientSecret)) {
             throw new InvalidRequestException('client_secret');
         }
@@ -136,6 +138,7 @@ abstract class BaseGrant extends AbstractGrant
             $this->server->getEventEmitter()->emit(new ClientAuthenticationFailedEvent($this->server->getRequest()));
             throw new InvalidClientException();
         }
+
         return $client;
     }
     /**
